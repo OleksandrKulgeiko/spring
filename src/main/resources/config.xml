@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="discBean"
+          class="com.kulgeiko.spring_prep.a_ioc.configxml.stereo.Disc"
+          init-method="reviewDisc"
+          scope="singleton"/>
+
+    <!-- Wiring Property by p: namespace -->
+    <bean id="player"
+          class="com.kulgeiko.spring_prep.a_ioc.configxml.stereo.Player"
+          p:disc-ref="discBean" />
+
+    <!-- Wiring Property by regular approach -->
+    <!--
+    <bean id="player" class="com.kulgeiko.spring_prep.a_iococ.configxml.stereo.Player">
+        <property name="disc" ref="discBean"/>
+    </bean> -->
+
+
+
+    <!-- Constructor injection for primitive values (simple parameters) -->
+    <bean id="vehicle" class="com.kulgeiko.spring_prep.a_ioc.configxml.Vehicle">
+        <!-- by field name -->
+        <!-- <constructor-arg name="producer" value="BMW"/>
+        <constructor-arg name="electricCar" value="true"/> -->
+        <!-- by field index -->
+        <!-- <constructor-arg index="0" value="BMW"/>
+        <constructor-arg index="1" value="true"/> -->
+        <!-- by field type -->
+        <constructor-arg type="java.lang.String" value="BMW"/>
+        <constructor-arg type="boolean" value="true"/>
+    </bean>
+
+
+
+
+</beans>
